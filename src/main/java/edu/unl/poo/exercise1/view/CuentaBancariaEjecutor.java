@@ -59,18 +59,23 @@ public class CuentaBancariaEjecutor {
                  case 1:
                      System.out.print("Monto que va a depositar: ");
                      double deposito = sc.nextDouble();
-                     miCuenta.depositar(deposito);
-                     System.out.println("Depositado correctamente: " + deposito);
+                     if (deposito > 0) {
+                         miCuenta.depositar(deposito);
+                         System.out.println("Depositado correctamente: " + deposito);
+                     } else {
+                         System.out.println("Error: El monto debe ser positivo.");
+                     }
                      break;
 
                  case 2:
-                     System.out.print("Monto que va a retirar ");
+                     System.out.print("Monto que va a retirar: ");
                      double retiro = sc.nextDouble();
-                     if ( miCuenta.retirar(retiro) ) {
+                     if (retiro <= 0) {
+                         System.out.println("Error: El monto debe ser positivo.");
+                     } else if (miCuenta.retirar(retiro)) {
                          System.out.println("Retiro exitoso.");
-
                      } else {
-                         System.out.println("Saldo insuficiente...");
+                         System.out.println("Error: Saldo insuficiente.");
                      }
                      break;
 
